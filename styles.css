@@ -1,203 +1,316 @@
+/* Variables globales */
+:root {
+    --primary-color: #2d6a4f;
+    --background-color: #f0f0f0;
+    --text-color: #333;
+    --max-width: 1200px;
+    --padding: 20px;
+}
+
+/* Styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Ajouté pour afficher la barre de progression en haut */
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 0;
 }
 
-#main-container, #question-container {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-.btn {
-  display: inline-block;
-  padding: 15px 20px;
-  font-size: 16px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #2d6a4f; /* Vert foncé */
-  color: white;
-  text-align: center;
-  line-height: 1.5;
-  transition: background 0.3s;
-}
-
-.btn:hover {
-  background-color: #1b3c2f; /* Vert encore plus foncé au survol */
-}
-
-.links-container {
-  margin-top: 20px;
-}
-
-.link-btn {
-  display: inline-block;
-  padding: 10px 15px;
-  font-size: 16px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #2d6a4f; /* Vert foncé */
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.link-btn:hover {
-  background-color: #1b3c2f; /* Vert encore plus foncé au survol */
-}
-
-.result-block {
-  background-color: #e9f5f2; /* Couleur de fond légère pour les résultats */
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.informative-block {
-  background-color: #e9f5f2; /* Couleur de fond légère pour l'informatif */
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.restart-block {
-  text-align: center;
-}
-
-.additional-info {
-  background-color: #e0f7e0; 
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  color: #333;
-}
-/* Style pour l'icône d'aide */
-.help-icon {
-  background-color: #e9f5f2;
-  color: #2d6a4f;
-  border-radius: 50%;
-  padding: 2px 4px; /* Augmenter la taille de l'icône */
-  font-size: 16px; /* Augmenter la taille du texte de l'icône */
-  cursor: pointer;
-  margin-left: 10px;
-  position: relative;  /* Nécessaire pour que la bulle d'aide soit positionnée par rapport à l'icône */
-}
-
-/* Style pour la bulle d'aide */
-.tooltip {
-  position: absolute;
-  background-color: #1b3c2f;
-  color: white;
-  padding: 15px; /* Augmenter l'espace interne de la bulle */
-  border-radius: 8px; /* Adoucir les coins de la bulle */
-  font-size: 14px; /* Augmenter la taille du texte */
-  white-space: normal; /* Permettre au texte de s'enrouler */
-  z-index: 10;
-  top: 30px;
-  left: 0;
-  width: max-content; /* Adapter la largeur en fonction du contenu */
-  max-width: 300px; /* Limiter la largeur de la bulle pour éviter un texte trop long sur un seul ligne */
-  display: none;  /* Cachée par défaut */
-  flex-direction: row;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajouter une ombre portée pour plus de lisibilité */
-}
-
-/* Style pour l'image dans la bulle */
-.tooltip-image {
-  width: 100px; /* Augmenter la taille de l'image */
-  height: 100px; /* Augmenter la taille de l'image */
-  margin-right: 12px; /* Augmenter l'espace entre l'image et le texte */
-}
-
-/* Style pour le texte dans la bulle */
-.tooltip span {
-  word-wrap: break-word; /* Permettre de couper le texte si nécessaire */
-  white-space: normal; /* Autoriser le texte à se décomposer sur plusieurs lignes */
-  overflow: visible; /* S'assurer que le texte ne sera pas coupé */
-}
-
-/* Afficher la bulle au survol de l'icône */
-.help-icon:hover .tooltip {
-  display: flex; /* Utilisation de 'flex' pour aligner l'image et le texte dans la bulle */
-}
-
+/* ====== STYLES POUR LA PAGE D'ACCUEIL (index.html) ====== */
 #main-container-intro {
-  background-color: white;
-  width: 90%;
-  height: auto; /* Ajuste automatiquement la hauteur au contenu */
-  padding: 20px; /* Ajoute un espace autour du texte pour la lisibilité */
-  font-size: 1.2rem; /* Augmente légèrement la taille du texte pour la rendre plus visible */
-  line-height: 2.5; /* Ajoute de l'espacement entre les lignes pour une meilleure lisibilité */
-  margin: 0 auto; /* Centre le conteneur si une largeur spécifique est ajoutée plus tard */
-  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
-  position: relative; /* Nécessaire pour positionner l'image à l'intérieur */
+    background-color: white;
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 2rem auto 0;
+    padding: var(--padding);
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    position: relative;
+    padding: 20px 120px;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    flex: 1;
+}
+
+/* Images décoratives de la page d'accueil */
+#image1, #image2 {
+    width: clamp(250px, 35vw, 450px);
+    height: auto;
+    position: fixed;
+    opacity: 0.55;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
 }
 
 #image1 {
-  position: absolute; /* Permet de positionner l'image dans un coin */
-  top: 10px; /* Distance par rapport au haut du conteneur */
-  right: 30px; /* Distance par rapport au côté droit du conteneur */
-  width: 300px; /* Ajuste la largeur de l'image */
-  height: auto; /* Garde les proportions de l'image */
-  border-radius: 5px; /* Ajoute des coins légèrement arrondis (optionnel) */
+    top: 20%;
+    right: 10%;
+    transform: rotate(8deg);
 }
 
 #image2 {
-  position: absolute;
-  bottom: 10px; /* Distance par rapport au bas */
-  left: 10px; /* Distance par rapport à la gauche */
-  width: 300px; /* Ajuste la taille de l'image */
-  height: auto;
-  border-radius: 5px;
+    bottom: 20%;
+    left: 10%;
+    transform: rotate(-8deg);
+}
+
+/* ====== STYLES POUR LE QUESTIONNAIRE ====== */
+#main-container, #question-container {
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+    padding: var(--padding);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+#question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Boutons du questionnaire */
+.btn {
+    display: inline-block;
+    padding: 15px 20px;
+    font-size: 16px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    transition: background 0.3s;
+}
+
+/* Bouton retour */
+.back-button {
+    display: block;
+    margin: 20px auto 10px;
+}
+
+.btn:hover {
+    background-color: #1b3c2f;
+}
+
+/* Blocs de résultats */
+.result-block, .informative-block, .additional-info {
+    background-color: #e9f5f2;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.additional-info {
+    background-color: #e0f7e0;
+}
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted var(--primary-color);
+    cursor: help;
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 0 2px;
+    transition: all 0.3s ease;
+}
+
+.tooltip:hover {
+    background-color: #e9f5f2;
+    border-radius: 3px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: clamp(250px, 80vw, 450px);
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px 15px 15px 75px;
+    position: absolute;
+    z-index: 3;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-image: url('Clippy.webp');
+    background-size: 50px auto;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+
+/* Typographie générale */
+h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--primary-color);
 }
 
 p {
-  text-align: left;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
 
-sup {
-  text-align: left;
-  font-size: 0.8em; /* Réduit la taille de l'exposant */
-  color: #555; /* Donne une couleur légèrement différente */
+/* Listes */
+ul {
+    list-style-position: outside;
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 1rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+}
+
+/* Liens */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1b3c2f;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    padding: var(--padding);
+    text-align: left;
+    font-size: 0.9rem;
+    color: #666;
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto 2rem;
 }
 
 footer p {
-  font-size: 0.9rem; /* Texte des notes légèrement plus petit */
-  margin: 10px 0; /* Ajoute un peu d'espacement entre les notes */
+    margin: 0.5rem 0;
 }
 
-footer p strong {
-  color: #333; /* Numéro de la note plus visible */
-  font-weight: bold;
+/* Ajustement du body pour la page d'accueil */
+body:has(#main-container-intro) {
+    padding: 0;
+    justify-content: flex-start;
+}
+
+/* ====== MEDIA QUERIES ====== */
+@media screen and (max-width: 1200px) {
+    #image1 { right: 8%; }
+    #image2 { left: 8%; }
+    .content-wrapper { padding: 20px 100px; }
+}
+
+@media screen and (max-width: 992px) {
+    #image1 { right: 5%; }
+    #image2 { left: 5%; }
+    .content-wrapper { padding: 20px 60px; }
+    #main-container, #question-container { width: 95%; }
+}
+
+@media screen and (max-width: 768px) {
+    #main-container-intro {
+        width: 95%;
+        margin: 1rem auto;
+        padding: 15px;
+    }
+    .content-wrapper { padding: 15px; }
+    #image1, #image2 {
+        width: clamp(200px, 30vw, 350px);
+        opacity: 0.4;
+    }
+    #image1 { right: 0; }
+    #image2 { left: 0; }
+    .btn { width: 100%; margin: 10px 0; }
+}
+
+@media screen and (max-width: 480px) {
+    #main-container-intro {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        border-radius: 0;
+    }
+    .content-wrapper { padding: 10px; }
+    #image1 { right: -5%; }
+    #image2 { left: -5%; }
+    p, li { text-align: left; }
+    ul { padding-left: 1rem; }
+}
+
+/* ====== STYLES D'IMPRESSION ====== */
+@media print {
+    body { background: white; }
+    #main-container-intro {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+    .content-wrapper { padding: 0; }
+    #image1, #image2 { display: none; }
+    .tooltip .tooltiptext { display: none; }
+    .btn { 
+        border: 1px solid #000;
+        color: #000;
+        background: none;
+    }
 }

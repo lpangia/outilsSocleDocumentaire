@@ -9,6 +9,10 @@ const decisionTree = {
           result: "Le document qu'il vous faut est la politique d'archivage (ou politique d'archivage électronique).",
           additionalInfo: "Pour aller plus loin, pensez à la politique de pérennisation."
         },
+        "Assurer la meilleure conservation en dépit de l'absence de SAE": {
+          result: "Le document qu'il vous faut est la politique de pérennisation.",
+          additionalInfo: "Ce document vous permettra de définir les recommandations relatives à la pérennisation des métadonnées, formats et supports."
+        },
         "Cadrer les relations avec les services": {
           question: "Quel aspect souhaitez-vous cadrer ?",
           answers: {
@@ -27,7 +31,7 @@ const decisionTree = {
       answers: {
         "Conformité interne": {
           help: {
-            text: "Aled je me souviens plus de la super phrase de Maud pour l'explication",
+            text: "Cadrer les actions d'archivage dans une démarche de qualité interne, sans aller jusqu'à une certification",
             image: "https://static.wikia.nocookie.net/the-scrappy/images/c/cb/Clippy.png/revision/latest?cb=20231027172058"  // Clippy !!!! <3
           },
           question: "Quel est votre besoin spécifique ?",
@@ -60,8 +64,7 @@ const decisionTree = {
       answers: {
         "Conformité interne": {
           help: {
-            text: "Aled je me souviens plus de la super phrase de Maud pour l'explication",
-            image: "https://static.wikia.nocookie.net/the-scrappy/images/c/cb/Clippy.png/revision/latest?cb=20231027172058"  // Clippy !!!! <3
+            text: "Cadrer les actions d'archivage dans une démarche de qualité interne, sans aller jusqu'à une certification",
           },
           question: "Quel est votre besoin spécifique ?",
           answers: {
@@ -82,11 +85,11 @@ const decisionTree = {
             }
           }
         },
-        "Externalisation": {
-          result: "Il vous faut une convention d'archivage."
+        "Tiers-archivage": {
+          result: "Il vous faut une convention d'archivage. Pour la mise en place d'un SAE externalisé, vous devez également établir un cahier des charges et vous assurer que le prestataire est agréé."
         },
         "Tiers-hébergement": {
-          result: "Il vous faut un cahier des charges."
+          result: "Il vous faut un cahier des charges. Pour la mise en place d'un SAE externalisé, vous devez également vous assurer que le prestataire est agréé."
         },
         "Mutualisation": {
           question: "Quelle est votre situation ?",
@@ -110,8 +113,7 @@ const decisionTree = {
       answers: {
         "Conformité interne": {
           help: {
-            text: "Aled je me souviens plus de la super phrase de Maud pour l'explication",
-            image: "https://static.wikia.nocookie.net/the-scrappy/images/c/cb/Clippy.png/revision/latest?cb=20231027172058"   // Clippy !!!! <3
+            text: "Cadrer les actions d'archivage dans une démarche de qualité interne, sans aller jusqu'à une certification",
           },
           question: "Quel est votre besoin spécifique ?",
           answers: {
@@ -132,11 +134,11 @@ const decisionTree = {
             }
           }
         },
-        "Externalisation": {
-          result: "Il vous faut une convention d'archivage."
+        "Tiers-archivage": {
+          result: "Il vous faut une convention d'archivage. Pour la mise en place d'un SAE externalisé, vous devez également établir un cahier des charges et vous assurer que le prestataire est agréé."
         },
         "Tiers-hébergement": {
-          result: "Il vous faut un cahier des charges."
+          result: "Il vous faut un cahier des charges. Pour la mise en place d'un SAE externalisé, vous devez également vous assurer que le prestataire est agréé."
         },
         "Mutualisation": {
           question: "Quelle est votre situation ?",
@@ -218,15 +220,49 @@ function showQuestion() {
       backButton.className = "btn back-button";
       backButton.textContent = "Retour en arrière";
       backButton.onclick = goBackInTree;
-      container.parentNode.appendChild(backButton); // Ajouter le bouton sous le conteneur
+      container.appendChild(backButton);
     }
-
   } else if (currentNode.result) {
     console.log('Affichage du résultat :', currentNode.result);  // Debugging : afficher le résultat dans la console
 
     // Afficher le résultat principal
     const resultElement = document.createElement('p');
-    resultElement.textContent = currentNode.result;  // Affichage du résultat principal
+    // Remplacer les termes par des spans avec tooltip
+    let resultText = currentNode.result;
+    
+    // Définitions des termes
+    const definitions = {
+      'politique d\'archivage électronique': 'Politique d\'archivage électronique (PAE) : Fixe le cadre de référence du processus d\'archivage électronique, énonce les principes et règles sur lequel est fondé le SAE : principes réglementaires et normatifs, principes organisationnels, principes de mise en œuvre. Niveau fonctionnel.',
+      'contrat de service': 'Contrat de service (CS) : Fixe les engagements des intervenants dans le processus d\'archivage. Conclu entre un service versant, producteur, éventuellement un opérateur de versement et le service d\'archives responsable du SAE. Précise les conditions de fourniture du SAE par le SA à un SV/SP identifié.',
+      'contrat de versement': 'Contrat de versement (CV) : Précise les conditions archivistiques et techniques dans lesquelles les informations sont échangées entre un SV et un SA au cours du processus de versement d\'archives identifiées. Décrit les procédures et règles pour le transfert.',
+      'déclaration des pratiques d\'archivage': 'Déclaration des pratiques d\'archivage (DPA) : Complément de la politique d\'archivage. Document détaillant, pour chaque engagement de la Politique d\'Archivage, les éléments mis en œuvre pour y parvenir. Décrit les moyens techniques et organisationnels mis en œuvre.',
+      'politique de pérennisation': 'Politique de pérennisation (PP) : Document de gouvernance qui peut faire partie de la PA ou non et définit les recommandations relatives à la pérennisation des métadonnées, formats, supports… Elle inclut la classification des formats.',
+      'convention d\'archivage': 'Convention d\'archivage : Engagement entre un service d\'archives et un propriétaire d\'archives définissant les caractéristiques du service d\'archivage électronique en réponse à la politique d\'archivage du propriétaire d\'archives.',
+      'cahier des charges': 'Cahier des charges : Document détaillant les spécifications techniques et fonctionnelles du SAE à mettre en place.',
+      'convention de dépôt': 'Convention de dépôt : Vise à définir les modalités d\'archivage, de paramétrages du SAE et de réalisation des opérations de transfert des archives numériques produites par un service producteur/Collectivité.',
+      'documentation générale et technique du système': 'Documentation Générale et Technique du Système (DGTS) : Ensemble organisé de documentations de référence, décrivant l\'organisation, l\'architecture fonctionnelle et technique, les environnements système et réseau, permettant l\'exploitation du SAE.',
+      'offres de services': 'Offres de services (OS) : Définit, pour chacun des clients du service et au regard de la PA et de la PP, les niveaux de services qui peuvent être proposés par le service d\'archivage numérique.',
+      'politique d\'archivage': 'Politique d\'archivage (PA) : La pierre angulaire du dispositif documentaire du SAE. Elle se situe au niveau fonctionnel et est indépendante des choix et implémentations techniques. Elle doit donc décrire le cadre général du service.'
+    };
+
+    // Trier les termes par longueur décroissante pour traiter d'abord les termes les plus longs
+    const sortedTerms = Object.keys(definitions).sort((a, b) => b.length - a.length);
+
+    // Traiter d'abord les cas spéciaux (termes avec parenthèses)
+    if (resultText.includes('politique d\'archivage (ou politique d\'archivage électronique)')) {
+      resultText = resultText.replace(
+        'politique d\'archivage (ou politique d\'archivage électronique)',
+        '<span class="tooltip">politique d\'archivage<span class="tooltiptext">Politique d\'archivage (PA) : La pierre angulaire du dispositif documentaire du SAE. Elle se situe au niveau fonctionnel et est indépendante des choix et implémentations techniques. Elle doit donc décrire le cadre général du service.</span></span> (ou <span class="tooltip">politique d\'archivage électronique<span class="tooltiptext">Politique d\'archivage électronique (PAE) : Fixe le cadre de référence du processus d\'archivage électronique, énonce les principes et règles sur lequel est fondé le SAE : principes réglementaires et normatifs, principes organisationnels, principes de mise en œuvre. Niveau fonctionnel.</span></span>)'
+      );
+    } else {
+      // Remplacer les autres termes par leurs infobulles
+      for (const term of sortedTerms) {
+        const regex = new RegExp(`\\b${term}\\b(?![^<]*>|[^<>]*</)`, 'gi');
+        resultText = resultText.replace(regex, `<span class="tooltip">${term}<span class="tooltiptext">${definitions[term]}</span></span>`);
+      }
+    }
+
+    resultElement.innerHTML = resultText;
     const resultBlock = document.createElement('div');
     resultBlock.className = "result-block";
     resultBlock.appendChild(resultElement);
@@ -245,28 +281,86 @@ function showQuestion() {
     informativeBlock.className = "informative-block";
 
     const linkText = document.createElement('p');
-    linkText.textContent = "Vous pouvez également consulter les documents ci-dessous pour plus d'informations :";
+    linkText.textContent = "Pour vous aider à visualiser les documents :";
     informativeBlock.appendChild(linkText);
 
-    // Liens vers des ressources
-    const linksContainer = document.createElement('div');
-    linksContainer.className = "links-container";
+    // Créer un conteneur pour les images
+    const imagesContainer = document.createElement('div');
+    imagesContainer.className = "images-container";
+    imagesContainer.style.display = "flex";
+    imagesContainer.style.flexDirection = "column";
+    imagesContainer.style.alignItems = "center";
+    imagesContainer.style.gap = "30px";
+    imagesContainer.style.marginTop = "20px";
 
-    const link1 = document.createElement('a');
-    link1.className = "link-btn";
-    link1.href = "https://docs.google.com/document/d/1j5suZ54-yw8_VmiKoHzNxbZYgjeki2_1FFFXxX5QY24/edit?usp=sharing"; // Lien vers le glossaire
-    link1.target = "_blank"; // Ouvre le lien dans un nouvel onglet
-    link1.textContent = "Glossaire";
-    linksContainer.appendChild(link1);
+    // Fonction pour créer la modal
+    function createModal(imageSrc) {
+      const modal = document.createElement('div');
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100%';
+      modal.style.height = '100%';
+      modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+      modal.style.display = 'flex';
+      modal.style.justifyContent = 'center';
+      modal.style.alignItems = 'center';
+      modal.style.zIndex = '1000';
+      modal.style.cursor = 'pointer';
 
-    const link2 = document.createElement('a');
-    link2.className = "link-btn";
-    link2.href = "https://docs.google.com/presentation/d/1bVa5n5kuxuRBJNUmPpvjqsr6gWNrIJrJ/edit?usp=sharing&ouid=108611846323455107841&rtpof=true&sd=true"; // Lien vers la cartographie
-    link2.target = "_blank"; // Ouvre le lien dans un nouvel onglet
-    link2.textContent = "Cartographie";
-    linksContainer.appendChild(link2);
+      const modalImg = document.createElement('img');
+      modalImg.src = imageSrc;
+      modalImg.style.maxWidth = '90%';
+      modalImg.style.maxHeight = '90%';
+      modalImg.style.objectFit = 'contain';
 
-    informativeBlock.appendChild(linksContainer);
+      modal.appendChild(modalImg);
+      document.body.appendChild(modal);
+
+      modal.onclick = () => {
+        modal.remove();
+      };
+    }
+
+    // Première cartographie
+    const cartoContainer1 = document.createElement('div');
+    cartoContainer1.style.textAlign = "center";
+    const title1 = document.createElement('h3');
+    title1.textContent = "Vue d'ensemble des documents du socle documentaire";
+    title1.style.marginBottom = "10px";
+    const image1 = document.createElement('img');
+    image1.src = "carto_politique_archivage_V5.pptx.png";
+    image1.alt = "Vue d'ensemble des documents du socle documentaire";
+    image1.style.maxWidth = "45%";
+    image1.style.cursor = "pointer";
+    image1.style.transition = "transform 0.2s";
+    image1.onclick = () => createModal(image1.src);
+    image1.onmouseover = () => image1.style.transform = "scale(1.05)";
+    image1.onmouseout = () => image1.style.transform = "scale(1)";
+    cartoContainer1.appendChild(title1);
+    cartoContainer1.appendChild(image1);
+
+    // Deuxième cartographie
+    const cartoContainer2 = document.createElement('div');
+    cartoContainer2.style.textAlign = "center";
+    const title2 = document.createElement('h3');
+    title2.textContent = "Relations entre les différents documents";
+    title2.style.marginBottom = "10px";
+    const image2 = document.createElement('img');
+    image2.src = "carto_politique_archivage_V5.pptx (1).png";
+    image2.alt = "Relations entre les différents documents";
+    image2.style.maxWidth = "45%";
+    image2.style.cursor = "pointer";
+    image2.style.transition = "transform 0.2s";
+    image2.onclick = () => createModal(image2.src);
+    image2.onmouseover = () => image2.style.transform = "scale(1.05)";
+    image2.onmouseout = () => image2.style.transform = "scale(1)";
+    cartoContainer2.appendChild(title2);
+    cartoContainer2.appendChild(image2);
+
+    imagesContainer.appendChild(cartoContainer1);
+    imagesContainer.appendChild(cartoContainer2);
+    informativeBlock.appendChild(imagesContainer);
     container.appendChild(informativeBlock);
 
     // Ajouter le bouton "Recommencer le questionnaire" uniquement au niveau du résultat
@@ -296,37 +390,22 @@ function handleAnswer(answer) {
 
 // Retour en arrière dans l'arbre de décision
 function goBackInTree() {
-  const previousNode = historyStack.pop(); // Récupérer le dernier nœud
-  if (previousNode) {
-    currentNode = previousNode; // Revenir au nœud précédent
-    showQuestion(); // Mettre à jour l'affichage
+  if (historyStack.length > 0) {
+    currentNode = historyStack.pop();
+    showQuestion();
   }
 }
 
 // Recommencer le questionnaire
 function restart() {
-  currentNode = decisionTree; // Revenir à la racine de l'arbre
-  historyStack.length = 0; // Réinitialiser l'historique
-  atRoot = true; // Réinitialiser l'état de la racine
-  startQuestionnaire(); // Revenir à la première question
+  currentNode = decisionTree;
+  historyStack.length = 0;
+  showQuestion();
 }
 
 // Démarrer le questionnaire
 function startQuestionnaire() {
-  document.getElementById('main-container').style.display = 'none';
-  document.getElementById('question-container').style.display = 'block';
-  showQuestion();
-}
-// Fonction pour compter le nombre total de questions dans la branche
-function countQuestions(node) {
-  let count = 0;
-  if (node.question) {
-    count += 1; // Si c'est une question, on l'ajoute au compteur
-  }
-  if (node.answers) {
-    for (const answer in node.answers) {
-      count += countQuestions(node.answers[answer]); // Comptabilise les questions dans les sous-nœuds
-    }
-  }
-  return count;
+    document.getElementById('main-container').style.display = 'none';
+    document.getElementById('question-container').style.display = 'block';
+    showQuestion();
 }
