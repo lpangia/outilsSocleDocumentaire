@@ -329,7 +329,7 @@ function showQuestion() {
     title1.textContent = "Vue d'ensemble des documents du socle documentaire";
     title1.style.marginBottom = "10px";
     const image1 = document.createElement('img');
-    image1.src = "carto_politique_archivage_V5.pptx.png";
+    image1.src = "images/carto_politique_archivage_V5.pptx.png";
     image1.alt = "Vue d'ensemble des documents du socle documentaire";
     image1.style.maxWidth = "45%";
     image1.style.cursor = "pointer";
@@ -347,7 +347,7 @@ function showQuestion() {
     title2.textContent = "Relations entre les différents documents";
     title2.style.marginBottom = "10px";
     const image2 = document.createElement('img');
-    image2.src = "carto_politique_archivage_V5.pptx (1).png";
+    image2.src = "images/carto_politique_archivage_V5.pptx%20(1).png";
     image2.alt = "Relations entre les différents documents";
     image2.style.maxWidth = "45%";
     image2.style.cursor = "pointer";
