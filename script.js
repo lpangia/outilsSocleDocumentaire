@@ -9,10 +9,6 @@ const decisionTree = {
           result: "Le document qu'il vous faut est la politique d'archivage (ou politique d'archivage électronique).",
           additionalInfo: "Pour aller plus loin, pensez à la politique de pérennisation."
         },
-        "Assurer la meilleure conservation en dépit de l'absence de SAE": {
-          result: "Le document qu'il vous faut est la politique de pérennisation.",
-          additionalInfo: "Ce document vous permettra de définir les recommandations relatives à la pérennisation des métadonnées, formats et supports."
-        },
         "Cadrer les relations avec les services": {
           question: "Quel aspect souhaitez-vous cadrer ?",
           answers: {
@@ -26,14 +22,10 @@ const decisionTree = {
         }
       }
     },
-    "Je fais de l'archivage numérique avec un SAE internalisé": {
+    "Je fais de l'archivage numérique avec un SAE internalisé, partiellement ou totalement externalisé": {
       question: "Quel est votre objectif principal ?",
       answers: {
         "Conformité interne": {
-          help: {
-            text: "Cadrer les actions d'archivage dans une démarche de qualité interne, sans aller jusqu'à une certification",
-            image: "https://static.wikia.nocookie.net/the-scrappy/images/c/cb/Clippy.png/revision/latest?cb=20231027172058"  // Clippy !!!! <3
-          },
           question: "Quel est votre besoin spécifique ?",
           answers: {
             "Légitimer l'action des archivistes auprès des interlocuteurs (DG, DSI, élus)": {
@@ -54,67 +46,15 @@ const decisionTree = {
           }
         },
         "Je propose un service mutualisé": {
-          result: "Il vous faut la politique d'archivage (ou politique d'archivage électronique) ainsi qu'une offres de service.",
+          result: "Il vous faut la politique d'archivage (ou politique d'archivage électronique) ainsi qu'une offre de service.",
           additionalInfo: "Pour aller plus loin, pensez à la politique de pérennisation et la déclaration des pratiques d'archivage."
         }
       }
     },
-    "Je fais de l'archivage numérique avec un SAE partiellement ou totalement externalisé": {
-      question: "Quel est votre objectif principal ?",
-      answers: {
-        "Conformité interne": {
-          help: {
-            text: "Cadrer les actions d'archivage dans une démarche de qualité interne, sans aller jusqu'à une certification",
-          },
-          question: "Quel est votre besoin spécifique ?",
-          answers: {
-            "Légitimer l'action des archivistes auprès des interlocuteurs (DG, DSI, élus)": {
-              result: "Le document qu'il vous faut est la politique d'archivage (ou politique d'archivage électronique).",
-              additionalInfo: "Pour aller plus loin ou si vous avez déjà rédigé une politique d'archivage, pensez à la politique de pérennisation."
-            },
-            "Cadrer les relations avec les services": {
-              question: "Quel aspect souhaitez-vous cadrer ?",
-              answers: {
-                "Cadrer le versement d'une typologie documentaire": {
-                  result: "Le document qu'il vous faut est le contrat de versement."
-                },
-                "Cadrer les versements d'un service": {
-                  result: "Le document qu'il vous faut est le contrat de service."
-                }
-              }
-            }
-          }
-        },
-        "Tiers-archivage": {
-          result: "Il vous faut une convention d'archivage. Pour la mise en place d'un SAE externalisé, vous devez également établir un cahier des charges et vous assurer que le prestataire est agréé."
-        },
-        "Tiers-hébergement": {
-          result: "Il vous faut un cahier des charges. Pour la mise en place d'un SAE externalisé, vous devez également vous assurer que le prestataire est agréé."
-        },
-        "Mutualisation": {
-          question: "Quelle est votre situation ?",
-          answers: {
-            "Je veux adhérer à un service mutualisé": {
-              result: "Il vous faut une convention d'archivage."
-            },
-            "Je propose un service mutualisé": {
-              result: "Il vous faut la politique d'archivage (ou politique d'archivage électronique) ainsi qu'une offres de service.",
-              additionalInfo: "Pour aller plus loin, pensez à la politique de pérennisation et la déclaration des pratiques d'archivage."
-            }
-          }
-        },
-        "Dépôt auprès des AD ou groupement de collectivités territoriales": {
-          result: "Il vous faut une convention de dépôt."
-        }
-      }
-    },
-    "Je mets en place un SAE": {
+    "Je dois mettre en place un SAE": {
       question: "Quel est votre besoin principal ?",
       answers: {
         "Conformité interne": {
-          help: {
-            text: "Cadrer les actions d'archivage dans une démarche de qualité interne, sans aller jusqu'à une certification",
-          },
           question: "Quel est votre besoin spécifique ?",
           answers: {
             "Légitimer l'action des archivistes auprès des interlocuteurs (DG, DSI, élus)": {
@@ -134,26 +74,20 @@ const decisionTree = {
             }
           }
         },
+        "Interne avec certification": {
+          result: "Il faut constituer la Documentation Générale et Technique du Système (DGTS)."
+        },
         "Tiers-archivage": {
-          result: "Il vous faut une convention d'archivage. Pour la mise en place d'un SAE externalisé, vous devez également établir un cahier des charges et vous assurer que le prestataire est agréé."
+          result: "Il vous faut une convention d'archivage et un contrat de dépôt."
         },
         "Tiers-hébergement": {
-          result: "Il vous faut un cahier des charges. Pour la mise en place d'un SAE externalisé, vous devez également vous assurer que le prestataire est agréé."
+          result: "Il vous faut une convention de tiers hébergement et un contrat de dépôt."
         },
-        "Mutualisation": {
-          question: "Quelle est votre situation ?",
-          answers: {
-            "Je veux adhérer à un service mutualisé": {
-              result: "Il vous faut une convention d'archivage."
-            },
-            "Je propose un service mutualisé": {
-              result: "Il vous faut la politique d'archivage (ou politique d'archivage électronique) ainsi qu'une offres de service.",
-              additionalInfo: "Pour aller plus loin ou si vous avez déjà rédigé une politique d'archivage, pensez à la politique de pérennisation et la déclaration des pratiques d'archivage."
-            }
-          }
+        "Adhésion à un service mutualisé": {
+          result: "Il vous faut une convention d'archivage et un contrat de dépôt."
         },
-        "Certification (NF 461)": {
-          result: "Il faut constituer la Documentation Générale et Technique du Système (DGTS)."
+        "Dépôt auprès des AD": {
+          result: "Il vous faut une convention de dépôt et un contrat de dépôt."
         }
       }
     }
