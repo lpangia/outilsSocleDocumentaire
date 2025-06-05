@@ -54,29 +54,6 @@ body {
     flex: 1;
 }
 
-/* Images décoratives de la page d'accueil */
-#image1, #image2 {
-    width: clamp(250px, 35vw, 450px);
-    height: auto;
-    position: fixed;
-    opacity: 0.55;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-#image1 {
-    top: 20%;
-    right: 10%;
-    transform: rotate(8deg);
-}
-
-#image2 {
-    bottom: 20%;
-    left: 10%;
-    transform: rotate(-8deg);
-}
-
 /* ====== STYLES POUR LE QUESTIONNAIRE ====== */
 #main-container, #question-container {
     text-align: center;
@@ -253,14 +230,10 @@ body:has(#main-container-intro) {
 
 /* ====== MEDIA QUERIES ====== */
 @media screen and (max-width: 1200px) {
-    #image1 { right: 8%; }
-    #image2 { left: 8%; }
     .content-wrapper { padding: 20px 100px; }
 }
 
 @media screen and (max-width: 992px) {
-    #image1 { right: 5%; }
-    #image2 { left: 5%; }
     .content-wrapper { padding: 20px 60px; }
     #main-container, #question-container { width: 95%; }
 }
@@ -272,12 +245,6 @@ body:has(#main-container-intro) {
         padding: 15px;
     }
     .content-wrapper { padding: 15px; }
-    #image1, #image2 {
-        width: clamp(200px, 30vw, 350px);
-        opacity: 0.4;
-    }
-    #image1 { right: 0; }
-    #image2 { left: 0; }
     .btn { width: 100%; margin: 10px 0; }
 }
 
@@ -289,8 +256,6 @@ body:has(#main-container-intro) {
         border-radius: 0;
     }
     .content-wrapper { padding: 10px; }
-    #image1 { right: -5%; }
-    #image2 { left: -5%; }
     p, li { text-align: left; }
     ul { padding-left: 1rem; }
 }
@@ -306,7 +271,6 @@ body:has(#main-container-intro) {
         box-shadow: none;
     }
     .content-wrapper { padding: 0; }
-    #image1, #image2 { display: none; }
     .tooltip .tooltiptext { display: none; }
     .btn { 
         border: 1px solid #000;
